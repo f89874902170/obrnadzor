@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная</title>
+    <style>
+                :root {
+            --primary-red: #ada9e4;
+            --header-footer-bg: black;
+            --text-color-light: white;
+            --news-bg: #2e2e2e; /* Темно-серый фон для бегущей строки */
+            --news-text-color: white;
+            --section-bg-color: #fdf2e2; /* Светло-бежевый фон для основного контента */
+            --font-family: 'Times New Roman', serif;
+        }
+
+        body {
+            font-family: var(--font-family);
+            margin: 0;
+            padding: 0;
+            background-color: var(--primary-red);
+            color: var(--text-color-light);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .header {
+            background-color: black;
+            color: white;
+            padding: 15px 30px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .header-logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .header-logo img {
+            height: 35px;
+            margin-right: 15px;
+        }
+
+        .header-logo span {
+            font-size: 22px;
+            font-weight: bold;
+        }
+        a:visited {
+            text-decoration: none;  /* Убираем подчёркивание */
+            color: #ffffff;         /* Белый цвет */
+        }
+        .header-nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 25px;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+
+        .header-nav a:hover {
+            color: #ddd;
+            text-decoration: underline;
+        }
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            padding-top: 30px;
+            padding-bottom: 30px;
+            width: 100%;
+            max-width: 1920px;
+            margin: 0 auto;
+            box-sizing: border-box;
+        }
+
+        .left-panel {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 0 40px;
+            max-width: 600px;
+            text-align: left;
+            box-sizing: border-box;
+        }
+
+        .left-panel h1 {
+            font-size: 80px;
+            margin-bottom: 20px;
+            line-height: 0.9;
+            color: var(--text-color-light);
+        }
+
+        .left-panel p {
+            font-size: 50px;
+            margin-bottom: 20px;
+            line-height: 1.1;
+            color: var(--text-color-light);
+        }
+
+        .left-panel .bottom-text {
+            font-size: 30px;
+            margin-top: auto;
+            padding-top: 50px;
+            color: var(--text-color-light);
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background-color: white;
+            border-radius: 30px;
+            padding: 12px 25px;
+            margin-bottom: 40px;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+            border: 1px solid #ddd;
+        }
+
+        .search-bar input {
+            flex-grow: 1;
+            border: none;
+            outline: none;
+            font-size: 22px;
+            padding: 0;
+            color: #333;
+        }
+
+        .search-bar input::placeholder {
+            color: #aaa;
+        }
+
+        .search-bar .search-icon {
+            font-size: 28px;
+            color: #888;
+            cursor: pointer;
+            margin-left: 15px;
+        }
+
+        .right-panel-container {
+            width: 60%;
+            max-width: 1768px;
+            max-height: 550px;
+            min-width: 900px;
+            min-height: 500px;
+            padding: 60px;
+            background-size: cover; /* Картинка покроет всю площадь, сохраняя пропорции */
+            background-position: center; /* Центрируем картинку */
+            background-repeat: no-repeat; /* Нет повторения */
+            background-image: url('obt.jpg');
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-radius: 20px;
+            flex-shrink: 0;
+
+        }
+
+
+
+        .footer {
+            background-color: var(--header-footer-bg);
+            color: var(--text-color-light);
+            padding: 25px 30px;
+            font-size: 16px;
+            text-align: center;
+            margin-top: auto;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .footer p {
+            margin: 5px 0;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 1200px) {
+            .main-content {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .left-panel {
+                max-width: 100%;
+                padding: 0 20px;
+                text-align: center;
+                align-items: center;
+            }
+
+
+            .left-panel p {
+                font-size: 35px;
+            }
+
+            .left-panel .bottom-text {
+                font-size: 25px;
+            }
+
+            /* На средних экранах сетка меню тоже скрывается, так как убран контент */
+            .menu-grid,
+            .menu-item,
+            .menu-item-image-wrapper,
+            .menu-item img,
+            .menu-item-title,
+            .menu-item-price,
+            .menu-item-description {
+                display: none;
+            }
+        }
+/* Бегущая строка */
+        .running-news {
+            background-color: var(--news-bg);
+            color: var(--news-text-color);
+            font-size: 24px;
+            padding: 15px 0;
+            text-align: center;
+            overflow: hidden; /* Обрезаем все, что выходит за рамки */
+            white-space: nowrap; /* Содержимое не переносится */
+            position: relative; /* Для позиционирования текста */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .running-news span {
+            display: inline-block; /* Чтобы текст мог двигаться */
+            padding-left: 100%; /* Начинаем за пределами видимости */
+            animation: scroll-left 50s linear infinite; /* Анимация: название, длительность, тип, зацикленность */
+        }
+
+        /* Анимация */
+        @keyframes scroll-left {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-100%); /* Движение влево на всю ширину */
+            }
+        }
+
+        .info-section {
+            background-color: var(--section-bg-color); /* Бежевый фон для секции новостей */
+            padding: 40px 0;
+            height: 300%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .info-cards {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            height: 200%;
+            max-width: 1200px;
+            gap: 30px;
+            flex-wrap: wrap; /* Перенос карточек при уменьшении экрана */
+        }
+
+        .info-card {
+            background-color: white; /* Фон карточек */
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            text-align: center;
+            flex: 1; /* Позволяет карточкам занимать доступное пространство */
+            min-width: 280px; /* Минимальная ширина карточки */
+            max-width: 350px; /* Максимальная ширина карточки */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .info-card img {
+            width: 100%;
+            max-width: 100%; /* Гарантирует, что изображение не выйдет за пределы */
+            height: 200px; /* Фиксированная высота изображений */
+            object-fit: cover; /* Обрезка для сохранения пропорций */
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .info-card-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #110101;
+        }
+
+        .info-card-text {
+            font-size: 16px;
+            color: #030000;
+            line-height: 1.4;
+        }
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                padding: 10px 20px;
+            }
+             /* Стили для ссылок в шапке */
+        .a {
+            color: var(--text-color-light) !important; /* Всегда белый цвет */
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .a:hover {
+            color: #ddd !important; /* Светлее при наведении */
+            text-decoration: underline;
+        }
+
+            .header-logo {
+                margin-bottom: 10px;
+                justify-content: center;
+            }
+
+            .header-nav {
+                display: none; /* Скрываем навигацию полностью на маленьких экранах */
+            }
+
+            .search-bar {
+                max-width: 100%;
+                padding: 10px 20px;
+            }
+
+            .search-bar input {
+                font-size: 18px;
+            }
+
+            .search-bar .search-icon {
+                font-size: 24px;
+            }
+
+            .footer {
+                padding: 20px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+<header class="header">
+        <div class="header-logo">
+            <img src="logoDonCofeon.png" alt="Логотип Компании"> 
+            <span><a href="index.html">Управление по контролю и надзору в сфере образования Республики Башкортостан</a></span>
+        </div>
+        <nav class="header-nav">
+            <a href="index.html">на главную</a>
+            <a> | </a>
+            <a href="zayavka.html">заявка на работу</a>
+            <a> | </a>
+            <a href="about.html">о нас</a>
+        </nav>
+        <div class="header-vk-icon">
+            <a href="https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://vk.com/obrnadzor102&ved=2ahUKEwiiyJ354sqUAxVkPxAIHZWXAPgQFnoECD0QAQ&usg=AOvVaw1DUFdQJzTHFDGSQE-omQUW"><img src="" alt="VK"></a> <!-- Иконка VK -->
+        </div>
+    </header>
+
+    <div class="main-content">
+        <div class="left-panel">
+            <h1>ОБРНАДЗОР</h1>
+            <p>Обязательно приходите к нам <br>на практику,<br>или просто<br>на работу!</p>
+            
+            <p class="bottom-text">ждем вас еще!</p>
+        </div>
+
+        <div class="right-panel-container">
+        </div>
+    </div>
+        <div class="running-news">
+            <span>СВЕЖИЕ НОВОСТИ СВЕЖИЕ НОВОСТИ СВЕЖИЕ НОВОСТИ СВЕЖИЕ НОВОСТИ СВЕЖИЕ НОВОСТИ СВЕЖИЕ НОВОСТИ СВЕЖИЕ НОВОСТИ СВЕЖИЕ НОВОСТИ СВЕЖИЕ НОВОСТИ СВЕЖИЕ НОВОСТИ СВЕЖИЕ НОВОСТИ СВЕЖИЕ НОВОСТИ СВЕЖИЕ НОВОСТИ СВЕЖИЕ НОВОСТИ СВЕЖИЕ НОВОСТИ СВЕЖИЕ НОВОСТИ СВЕЖИЕ НОВОСТИ СВЕЖИЕ НОВОСТИ</span>
+        </div>
+
+        <section class="info-section">
+            <div class="info-cards">
+                <div class="info-card">
+                    <img src="https://s-webs.ru/upload/iblock/f0a/f0afdb09052b3b87a4b8bc702205382a.png" alt="Новость 1">
+                    <div class="info-card-title">У нас появился свой собственный сайт!</div>
+                    <div class="info-card-text">Заглядывайте сюда почаще</div>
+                </div>
+                <div class="info-card">
+                    <img src="https://img.freepik.com/premium-vector/friends-doing-high-five-big-people-team-doing-high-five-together-happy-friend-group-informal-greeting-command-motivation-vector-concept_53562-12114.jpg" >
+                    <div class="info-card-title">Снова открыт набор в комманду!</div>
+                    <div class="info-card-text">Поскорее присоединяйтесь в дружный коллектив</div>
+                </div>
+                <div class="info-card">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCXxSrS8Kc0XZA1XjUJ4EUPs8cIzK_WmovAw&s" alt="Новость 3">
+                    <div class="info-card-title"> Помощь семьям героев! </div>
+                    <div class="info-card-text">Обязательно позвоните по номеру и мы скоординируем для семей с героями СВО</div>
+                </div>
+            </div>
+        </section>
+    <footer class="footer">
+        <p>&copy; Обрнадзор 2026</p>
+        <p>ВК - @obrnadzor102</p>
+        <p>контактный телефон -  8 (347) 251-98-84 </p>
+    </footer>
+</body>
+</html>

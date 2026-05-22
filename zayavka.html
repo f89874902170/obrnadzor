@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Подача заявления</title>
+    <link rel="stylesheet" href="style.css"> 
+    <style> 
+        :root {
+            --primary-red: #ada9e4;
+            --header-footer-bg: black;
+            --text-color-light: white;
+            --news-bg: #2e2e2e; /* Темно-серый фон для бегущей строки */
+            --news-text-color: white;
+            --section-bg-color: #fdf2e2; /* Светло-бежевый фон для основного контента */
+            --font-family: 'Times New Roman', serif;
+        }
+        
+        body {
+            font-family: var(--font-family);
+            margin: 0;
+            padding: 0;
+            background-color: var(--primary-red);
+            color: var(--text-color-light);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+       .header {
+            background-color: black;
+            color: white;
+            padding: 15px 30px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .header-logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .header-logo img {
+            height: 35px;
+            margin-right: 15px;
+        }
+
+        .header-logo span {
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .header-nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 25px;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+        a:visited {
+            text-decoration: none;  /* Убираем подчёркивание */
+            color: #ffffff;         /* Белый цвет */
+        }
+        .header-nav a:hover {
+            color: #ddd;
+            text-decoration: underline;
+        }
+
+        .header-vk-icon img {
+            height: 25px;
+            margin-left: 15px;
+            vertical-align: middle;
+            filter: brightness(0) invert(1); /* Делает изображение белым */
+        }
+        
+
+        @media (max-width: 768px) {
+            .header-vk-icon img {
+                 filter: none; /* Убираем фильтр, если он мешает */
+            }
+         }
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: row; /* Строчное расположение для больших экранов */
+            align-items: stretch; /* Растягиваем по высоте */
+            padding-top: 30px;
+            padding-bottom: 30px;
+            width: 100%;
+            max-width: 1920px;
+            margin: 0 auto;
+            box-sizing: border-box;
+        }
+
+        .left-form-panel {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 0 40px;
+            max-width: 600px;
+            text-align: left;
+            box-sizing: border-box;
+        }
+
+        .left-form-panel h1 {
+            font-size: 70px; /* Уменьшаем размер заголовка "Предзаказ" */
+            margin-bottom: 40px;
+            line-height: 1;
+            color: var(--text-color-light);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+            width: 100%; /* Поле занимает всю ширину родителя */
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 30px;
+            margin-bottom: 10px;
+            color: var(--text-color-light);
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="tel"] {
+            width: 100%;
+            padding: 15px 25px;
+            font-size: 22px;
+            border: none;
+            border-radius: 30px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+            border: 1px solid #ddd;
+            box-sizing: border-box;
+            color: #333;
+        }
+
+        .form-group input[type="text"]::placeholder,
+        .form-group input[type="tel"]::placeholder {
+            color: #aaa;
+        }
+
+        .form-group input[type="submit"] {
+            width: 150px; /* Фиксированная ширина кнопки */
+            padding: 15px 0;
+            font-size: 24px;
+            font-weight: bold;
+            color: black; /* Текст "готово!" черный */
+            background-color: #f0d7b1; /* Фон кнопки, похожий на fon.png */
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            text-align: center;
+            margin-top: 20px; /* Отступ от предыдущего поля */
+        }
+
+        .form-group input[type="submit"]:hover {
+            background-color: #e8c8a5; /* Немного темнее при наведении */
+            transform: translateY(-3px);
+        }
+
+        .right-image-panel {
+            width: 60%;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px;
+            box-sizing: border-box;
+            background-color: #00b2b5;
+            border-radius: 40px;
+            flex-shrink: 0;
+        }
+
+        .right-image-panel .fon-image {
+            width: 300%;
+            max-width: 700px; /* Ограничение ширины изображения */
+            height: auto;
+            display: block;
+            margin-bottom: 20px; /* Отступ под изображением */
+        }
+
+        .right-image-panel .map-image {
+            width: 200%;
+            max-width: 800px; /* Ограничение ширины карты */
+            height: auto;
+            display: block;
+            border-radius: 15px; /* Скругление углов карты */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        #download-btn {
+            display: inline-block; /* Кнопка ведет себя как строчный элемент, но может иметь размеры */
+            padding: 15px 30px; /* Отступы */
+            font-size: 24px; /* Размер шрифта */
+            font-weight: bold; /* Полужирный шрифт */
+            color: #1A5276; /* Темно-синий цвет текста */
+            background-color: #AED6F1; /* Небесно-голубой фон */
+            border: none; /* Без рамки */
+            border-radius: 25px; /* Сильно скругленные углы */
+            cursor: pointer; /* Курсор в виде руки */
+            box-shadow: 0 6px 15px rgba(174, 214, 241, 0.4); /* Голубая тень */
+            transition: background-color 0.3s ease, transform 0.3s ease; /* Плавный переход */
+            margin-top: 20px; /* Отступ сверху */
+            width: 100%; /* Занимает всю ширину родительского form-group */
+            box-sizing: border-box; /* Чтобы padding и border включались в общую ширину */
+        }
+
+        #download-btn:hover {
+            background-color: #85C1E9; /* Более темный голубой при наведении */
+            transform: translateY(-3px); /* Легкий подъем */
+        }
+
+        #download-btn:active {
+            transform: translateY(0); /* Возвращаем на место при нажатии */
+        }
+
+        .footer {
+            background-color: var(--header-footer-bg);
+            color: var(--text-color-light);
+            padding: 25px 30px;
+            font-size: 16px;
+            text-align: center;
+            margin-top: auto;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .footer p {
+            margin: 5px 0;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 1200px) {
+            .main-content {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .left-form-panel {
+                max-width: 100%;
+                padding: 0 20px;
+                text-align: center;
+                align-items: center;
+            }
+
+            .left-form-panel h1 {
+                font-size: 60px; /* Уменьшаем заголовок на средних экранах */
+            }
+
+            .form-group label {
+                font-size: 24px;
+            }
+
+            .form-group input[type="text"],
+            .form-group input[type="tel"] {
+                font-size: 18px;
+            }
+
+            .form-group input[type="submit"] {
+                width: 120px;
+                font-size: 20px;
+            }
+
+            .right-image-panel {
+                width: 100%;
+                max-width: 100%;
+                border-radius: 0;
+                padding: 30px 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                padding: 10px 20px;
+            }
+
+            .header-logo {
+                margin-bottom: 10px;
+                justify-content: center;
+            }
+
+            .header-nav {
+                display: none; /* Навигация скрыта */
+            }
+
+            .search-bar {
+                max-width: 100%;
+                padding: 10px 20px;
+            }
+
+            .search-bar input {
+                font-size: 18px;
+            }
+
+            .search-bar .search-icon {
+                font-size: 24px;
+            }
+
+            .footer {
+                padding: 20px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+<header class="header">
+        <div class="header-logo">
+            <img src="logoDonCofeon.png" alt="Логотип Компании"> <!-- Укажите путь к вашему логотипу -->
+            <span><a href="index.html">Управление по контролю и надзору в сфере образования Республики Башкортостан</a></span>
+        </div>
+        <nav class="header-nav">
+            <a href="index.html">на главную</a>
+            <a> | </a>
+            <a href="zayavka.html">заявка на работу</a>
+            <a> | </a>
+            <a href="about.html">о нас</a>
+        </nav>
+        <div class="header-vk-icon">
+            <a href="https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://vk.com/obrnadzor102&ved=2ahUKEwiiyJ354sqUAxVkPxAIHZWXAPgQFnoECD0QAQ&usg=AOvVaw1DUFdQJzTHFDGSQE-omQUW"><img src="" alt="VK"></a> <!-- Иконка VK -->
+        </div>
+    </header>
+
+
+        <main class="main-content">
+            <div class="left-form-panel">
+                <h1>Прошу, заполните заявку и отправьте нам в ВК </h1> <br>
+                
+                <!-- Здесь будут отображаться сообщения -->
+                <div id="message-area"></div>
+
+                <form id="application-form"> <!-- ID для JavaScript -->
+                    <div class="form-group">
+                        <label for="name">Ваше ФИО</label>
+                        <input type="text" id="name" name="name" placeholder="Александрова Александра Александровна" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="obr">Наличие образования по специальности в ВУЗ/ССУЗ</label>
+                        <input type="text" id="obr" name="obr" placeholder="Да, ***" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="age">Возраст</label>
+                        <input type="text" id="age" name="age" placeholder="18" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Телефон</label>
+                        <input type="tel" id="phone" name="phone" placeholder="+7 (XXX) XXX-XX-XX" required>
+                    </div>
+                    <div class="form-group">
+                        <!-- Кнопка, которая будет инициировать скачивание -->
+                        <input type="button" value="Скачать заявку" id="download-btn">
+                    </div>
+                </form>
+            </div>
+
+            <div class="right-image-panel">
+                <img src="imgppl.png" alt="Иллюстрация" class="fon-image">
+                <img src="map.png" alt="Карта адресов" class="map-image">
+            </div>
+        </main>
+
+        <footer class="footer">
+            <div class="container">
+                <p>&copy; Обрнадзор 2026</p>
+                <p>ВК - @obrnadzor102</p>
+                <p>контактный телефон - 8 (347) 251-98-84 </p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Получаем ссылки на элементы
+        const form = document.getElementById('application-form');
+        const downloadBtn = document.getElementById('download-btn');
+        const messageArea = document.getElementById('message-area');
+
+        // Функция для генерации текстового файла
+        function downloadFile(filename, text) {
+            const element = document.createElement('a');
+            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+            element.setAttribute('download', filename);
+
+            element.style.display = 'none';
+            document.body.appendChild(element);
+
+            element.click();
+
+            document.body.removeChild(element);
+        }
+
+        // Обработчик клика по кнопке "Скачать заявку"
+        downloadBtn.addEventListener('click', function() {
+            const nameInput = document.getElementById('name');
+            const obrInput = document.getElementById('obr');
+            const ageInput = document.getElementById('age');
+            const phoneInput = document.getElementById('phone');
+
+            // Получаем значения из полей
+            const name = nameInput.value.trim();
+            const obr = obrInput.value.trim();
+            const age = ageInput.value.trim();
+            const phone = phoneInput.value.trim();
+
+            // Простая валидация (можно добавить более сложную)
+            if (!name || !phone) {
+                messageArea.innerHTML = '<div class="error-message">Пожалуйста, заполните ФИО и Телефон.</div>';
+                return; // Прерываем выполнение, если поля пусты
+            }
+
+            if (!age || isNaN(age) || age < 18) {
+                messageArea.innerHTML = '<div class="error-message">Вам должно быть не менее 18 лет.</div>';
+                return; // Прерываем выполнение, если возраст не подходит
+            }
+            // Форматируем данные для файла (в данном случае, как CSV с точкой с запятой)
+            const fileContent = `ФИО: ${name}\nОбразование: ${obr}\nВозраст: ${age}\nТелефон: ${phone}\nДата заявки: ${new Date().toLocaleString()}\n`;
+
+            // Генерируем имя файла (например, с ФИО и датой)
+            const filename = `Заявка_${name.replace(/\s+/g, '_')}_${new Date().toISOString().slice(0, 10)}.txt`;
+
+            // Скачиваем файл
+            downloadFile(filename, fileContent);
+
+            // Очищаем форму после скачивания (опционально)
+            form.reset();
+            messageArea.innerHTML = '<div class="success-message">Ваша заявка сформирована и готова к скачиванию!</div>';
+        });
+
+    </script>
+</body>
+</html>

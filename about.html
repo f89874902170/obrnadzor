@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>О нас</title>
+    <style>
+        :root {
+            --primary-red: #ada9e4;
+            --header-footer-bg: black;
+            --text-color-light: white;
+            --news-bg: #2e2e2e; /* Темно-серый фон для бегущей строки */
+            --news-text-color: white;
+            --section-bg-color: #fdf2e2; /* Светло-бежевый фон для основного контента */
+            --font-family: 'Times New Roman', serif;
+        }
+
+        body {
+            font-family: var(--font-family);
+            margin: 0;
+            padding: 0;
+            background-color: var(--primary-red);
+            color: #333; /* Основной цвет текста на красном фоне */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .header {
+            background-color: black;
+            color: white;
+            padding: 15px 30px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .header-logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .header-logo img {
+            height: 35px;
+            margin-right: 15px;
+        }
+
+        .header-logo span {
+            font-size: 22px;
+            font-weight: bold;
+        }
+        a:visited {
+            text-decoration: none;  /* Убираем подчёркивание */
+            color: #ffffff;         /* Белый цвет */
+        }
+        .header-nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 25px;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+
+        .header-nav a:hover {
+            color: #ddd;
+            text-decoration: underline;
+        }
+
+        .header-vk-icon img {
+            height: 25px;
+            margin-left: 15px;
+            vertical-align: middle;
+            filter: brightness(0) invert(1); /* Делает изображение белым */
+        }
+
+        @media (max-width: 768px) {
+            .header-vk-icon img {
+                 filter: none; /* Убираем фильтр, если он мешает */
+            }
+         }
+
+        .main-content-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column; /* Контент будет в колонку, чтобы бегущая строка была между */
+            align-items: stretch;
+            padding-top: 30px;
+            padding-bottom: 30px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .main-hero-section {
+            display: flex;
+            flex: 1; /* Занимает доступное пространство */
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            margin-bottom: 40px; /* Отступ под основной секцией */
+        }
+
+        .hero-text-panel {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            max-width: 700px;
+            text-align: left;
+        }
+
+        .hero-text-panel h1 {
+            font-size: 80px; /* Уменьшаем размер заголовка */
+            margin-bottom: 30px;
+            line-height: 1;
+            color: #25008b; /* Бордовый цвет */
+    /* Рассеивающаяся бежевая тень позади текста */
+    text-shadow:
+        0px 0px 10px #f0d7b1, /* Первый слой: минимум смещения, среднее размытие */
+        0px 0px 20px #e8c8a5; /* Второй слой: тоже минимум смещения, большее размытие */
+    /* Вы можете регулировать значения смещения (первые два числа) и размытия (третье число) */
+        }
+
+        .hero-text-panel p {
+            font-size: 22px; /* Более мелкий шрифт для основного текста */
+            margin-bottom: 30px;
+            line-height: 1.4;
+            color: #333; /* Основной текст на бежевом фоне */
+        }
+
+        .apply-button {
+            display: inline-block;
+            padding: 15px 30px;
+            font-size: 24px;
+            font-weight: bold;
+            color: black; /* Текст кнопки */
+            background-color: #fff3e0; /* Светло-бежевый фон для кнопки */
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            text-decoration: none; /* Убираем подчеркивание у ссылки */
+            margin-right: 10px; /* Небольшой отступ справа между кнопками */
+            margin-bottom: 10px;
+        }
+
+        .apply-button:hover {
+            background-color: #e8d8c5; /* Темнее при наведении */
+            transform: translateY(-3px);
+        }
+        .button-container {
+        display: flex; /* Используем Flexbox для лучшего контроля */
+        flex-wrap: wrap; /* Разрешаем кнопкам переноситься на новую строку, если нет места */
+        gap: 10px; /* Расстояние между кнопками (можно заменить margin-right на это) */
+        justify-content: center; /* Центрируем кнопки внутри контейнера */
+        /* white-space: nowrap; */ /* Если вы уверены, что места всегда хватит, можно использовать это,
+                                    но flexbox более гибкий */
+        /* overflow: hidden; */ /* Если нужно скрыть элементы, которые не помещаются */
+         }
+
+
+        .hero-image-panel {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-left: 40px; /* Отступ слева */
+            text-align: center;
+        }
+
+        .hero-image-panel .fon-image {
+            width: 200%;
+            max-width: 700px; /* Ограничение ширины изображения */
+            height: auto;
+            display: block;
+            margin-bottom: 20px;
+            border-radius: 20px;
+        }
+
+        /* Бегущая строка */
+        .running-news {
+            background-color: var(--news-bg);
+            color: var(--news-text-color);
+            font-size: 24px;
+            padding: 15px 0;
+            text-align: center;
+            overflow: hidden; /* Обрезаем все, что выходит за рамки */
+            white-space: nowrap; /* Содержимое не переносится */
+            position: relative; /* Для позиционирования текста */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .running-news span {
+            display: inline-block; /* Чтобы текст мог двигаться */
+            padding-left: 100%; /* Начинаем за пределами видимости */
+            animation: scroll-left 50s linear infinite; /* Анимация: название, длительность, тип, зацикленность */
+        }
+
+        /* Анимация */
+        @keyframes scroll-left {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-100%); /* Движение влево на всю ширину */
+            }
+        }
+
+        .info-section {
+            background-color: var(--section-bg-color); /* Бежевый фон для секции новостей */
+            padding: 40px 0;
+            height: 300%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .info-cards {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            height: 200%;
+            max-width: 1200px;
+            gap: 30px;
+            flex-wrap: wrap; /* Перенос карточек при уменьшении экрана */
+        }
+
+        .info-card {
+            background-color: white; /* Фон карточек */
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            text-align: center;
+            flex: 1; /* Позволяет карточкам занимать доступное пространство */
+            min-width: 280px; /* Минимальная ширина карточки */
+            max-width: 350px; /* Максимальная ширина карточки */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .info-card img {
+            width: 100%;
+            max-width: 100%; /* Гарантирует, что изображение не выйдет за пределы */
+            height: 200px; /* Фиксированная высота изображений */
+            object-fit: cover; /* Обрезка для сохранения пропорций */
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .info-card-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #110101;
+        }
+
+        .info-card-text {
+            font-size: 16px;
+            color: #030000;
+            line-height: 1.4;
+        }
+
+        .footer {
+            background-color: var(--header-footer-bg);
+            color: var(--text-color-light);
+            padding: 25px 30px;
+            font-size: 16px;
+            text-align: center;
+            margin-top: auto;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .footer p {
+            margin: 5px 0;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 992px) {
+            .main-content-area {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .main-hero-section {
+                flex-direction: column;
+                text-align: center;
+                align-items: center;
+                padding: 0 20px;
+            }
+
+            .hero-text-panel {
+                max-width: 100%;
+                align-items: center; /* Центрируем текст */
+            }
+
+            .hero-text-panel h1 {
+                font-size: 60px;
+            }
+
+            .hero-text-panel p {
+                font-size: 18px;
+            }
+
+            .apply-button {
+                width: 80%; /* Делаем кнопку шире на мобильных */
+                max-width: 300px;
+            }
+
+            .hero-image-panel {
+                margin-left: 0;
+                margin-top: 30px;
+            }
+
+            .running-news span {
+                animation-duration: 10s; /* Ускоряем бегущую строку на малых экранах */
+            }
+
+            .info-cards {
+                flex-direction: column; /* Карточки друг под другом */
+                align-items: center;
+            }
+
+            .info-card {
+                max-width: 100%; /* Занимают всю ширину */
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                padding: 10px 20px;
+            }
+
+            .header-logo {
+                margin-bottom: 10px;
+                justify-content: center;
+            }
+
+            .header-nav {
+                display: none; /* Навигация скрыта */
+            }
+
+            .running-news {
+                font-size: 18px;
+                padding: 10px 0;
+            }
+
+            .running-news span {
+                animation-duration: 8s; /* Еще быстрее */
+            }
+
+            .hero-text-panel h1 {
+                font-size: 50px;
+            }
+
+            .hero-text-panel p {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+<header class="header">
+        <div class="header-logo">
+            <img src="logoDonCofeon.png" alt="Логотип Компании"> <!-- Укажите путь к вашему логотипу -->
+            <span><a href="index.html">Управление по контролю и надзору в сфере образования Республики Башкортостан</a></span>
+        </div>
+        <nav class="header-nav">
+            <a href="index.html">на главную</a>
+            <a> | </a>
+            <a href="zayavka.html">заявка на работу</a>
+            <a> | </a>
+            <a href="about.html">о нас</a>
+        </nav>
+        <div class="header-vk-icon">
+            <a href="https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://vk.com/obrnadzor102&ved=2ahUKEwiiyJ354sqUAxVkPxAIHZWXAPgQFnoECD0QAQ&usg=AOvVaw1DUFdQJzTHFDGSQE-omQUW"><img src="" alt="VK"></a> <!-- Иконка VK -->
+        </div>
+    </header>
+
+    <div class="main-content-area">
+        <section class="main-hero-section">
+            <div class="hero-text-panel">
+                <h1>Комания, которая <br>рядом</h1>
+                <p>
+                    Мы всегда стараемся быть с вами на одной волне, наше<br>
+                    главное желание - видеть ваши счастливые лица и знать,<br>
+                    что система образования справляется со своими обязанностями.<br>
+                    Пожалуйста, если  у вас возникнут трудности в сфере нашего<br>
+                    влияния - дайте нам знать!<br>
+                </p>
+                 <div class="button-container">
+                    <a href="zayavka.html" class="apply-button">хочу<br>заполнить<br>резюме!</a>
+                    <a href="error.html" class="apply-button">хочу<br>отправить<br>заявление!</a>
+                </div>
+            </div>
+            <div class="hero-image-panel">
+                <img src="kitty.jpg" alt="Иллюстрация" class="fon-image"> <!-- Изображение fon.png -->
+            </div>
+        </section>
+
+
+    </div>
+
+    <footer class="footer">
+        <p>&copy; Обрнадзор 2026</p>
+        <p>ВК - @obrnadzor102</p>
+        <p>контактный телефон -  8 (347) 251-98-84 </p>
+    </footer>
+</body>
+</html>
